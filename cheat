@@ -1,0 +1,28 @@
+#!/bin/bash
+#: Title:           cheat
+#: Purpose:         A Personal Manpage
+#: Created Date:    21/04/2020
+#: Modified Date:   21/04/2020
+#: Author:          "Ulisses O. F. Silva" <uofs.br@gmail.com>
+#: Version:         1.0
+#: Options:         None
+#START\#
+
+styleToPrint(){
+		pandoc -t plain "$1" | less
+}
+
+printCheatSheet(){
+		cheat="/home/$USER/.cheat/${1}.md"
+		if [[ -f "$cheat" ]]; then
+				styleToPrint "$cheat" 
+		else
+				echo "A cheatsheet for $1 is not avalible."
+		fi
+}
+
+main(){
+		printCheatSheet "$1"
+}
+main "$@"
+#END\#
